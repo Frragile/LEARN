@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.page {
+   
+    width: 92%;
+    margin: 0 auto;
+    background-color: #5a9cd1;
+    padding-top:10px;
+    /* border: 1px solid #e5e5e5 */
+}
+.mp-userinfo{
+    width: 345px;
+    height: 330px;
+    background-color: #c2abab;
+    border-radius: 10px;
+    position: absolute;
+}
+.mp-userinfo__pic{
+    position: relative;
+    height: 200px;
+    background-color: black;
+    /* border-radius: 10px; */
+}
+.mp-userinfo__meta{
+    position: relative;
+    left:10px;
+}
+.mp-userinfo__name{
+    color: #010101;
+    top: 20px;
+
+}
+.mp-userinfo__name:after{
+    content: "";
+    background-image: url("./nameafter.png");
+    right: 7px;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+
+}

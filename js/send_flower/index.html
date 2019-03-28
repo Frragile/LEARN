@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Talk in js-代理模式</title>
+</head>
+<body>
+    <script>
+        // object 
+        // 描述的方式 对象是怎样的就出来了
+        //对象字面量 JSON Object
+        const cl = {
+            name:'陈璐',/*字符串 引号逗号隔开*/
+            age:22,/*数值类型*/
+            single: true,/*布尔值*/
+            hometown: '江西',
+            room: 818,
+            mood:50,
+            receiveFlower: function(sender){
+                //如果mood>80 收花，否则拒绝  if/else  
+                // if (sender.height <180 ){
+                //     console.log('谢谢，没空。');
+                // }
+                // else{
+                //     console.log('谢谢。');
+                // }
+                if (cl.mood <80){
+                    console.log('心情不好，婉拒。');
+                }
+                else{
+                    console.log('收下了花');
+                }
+            },
+            listenGoodMood: function(){
+                cl.receiveFlower()
+                //心情不好 定时器
+                // console.log('心情不好')
+                setTimeout(function(){
+                    // console.log('心情好，收花');
+                    cl.mood = 85;
+                    cl.receiveFlower()
+                },3000);
+            }
+        };
+        const teki = {
+            name:'崔泽',
+            age:24,
+            hometown:'双门洞',
+            height:182,
+            //以上是teki属性
+            //以下是函数功能 对象的行为
+            //target 形参
+            sendFlower: function(target){
+                // console.log(target.name);
+                target.receiveFlower(teki);
+            }
+        };
+        //送花 B->A B->C->A
+        //B 送花 send_flower
+        //C 收花 转送给A
+        //A 收花 receive_flower
+
+        const lisa = {
+            name:"lisa",
+            //与cl实现了同样的接口receiveFlower
+            receiveFlower: function(sender){
+                // cl.receiveFlower(sender);/*课后试试sendFlower*/
+                //代理者，监听对象cl的心情
+                cl.listenGoodMood(function(){
+
+                })
+            }
+
+        }
+    </script>
+</body>
+</html>

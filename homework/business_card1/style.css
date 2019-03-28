@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+}
+.page{
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+}
+.page-header{
+    width: 100%;
+}
+.page-header__pic{
+    width: 100%;
+    height: 200px;
+    background: url("http://pic13.nipic.com/20110311/2531170_115544028888_2.jpg") no-repeat;
+    background-size: contain;
+}
+.page-header__userinfo{
+    padding: 10px 10px 13px 10px;
+    position: relative;
+}
+.name{
+    /* 文字多大占多高 */
+    line-height: 1;
+}
+.sex{
+    width: 14px;
+    height: 14px;
+    box-sizing: border-box;
+    position: relative;
+    /* background: url("./img/nv.png" )no-repeat; */
+    background-size: 100% 100%;
+}
+.labels{
+    position: relative;
+    margin-top: 10px;
+}
+.label{
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 15%;
+}
+.blue{
+    background-color: #48A6FD;
+}
+.green{
+    background-color: #1DCA42;
+}
+.orange{
+    background-color: #FB8800;
+}
+ul li{
+    list-style: none;
+}
+.page-header__msg{
+    margin-top: 10px;
+}
+.item{
+    width: 95px;
+    /* 设置成行内块级元素 */
+    display: inline-block;
+    position: relative;
+    padding-left: 30px;
+    color: #a89595;
+    font-size: 16px;
+}
+.city::before{
+    content:'';
+    width: 22px;
+    height: 25px;
+    background: url("./img/location.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;padding: 0;
+}
+.job::before{
+    content:'';
+    width: 22px;
+    height: 25px;
+    background: url("./img/zhiye.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;padding: 0;
+}
+.like::before{
+    content:'';
+    width: 22px;
+    height: 25px;
+    background: url("./img/aixin.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;padding: 0;
+}
+.wechat::before{
+    content:'';
+    width: 22px;
+    height: 25px;
+    background: url("./img/weixin.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;padding: 0;
+}
+.phone::before{
+    content:'';
+    width: 22px;
+    height: 25px;
+    background: url("./img/phone.png") no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    left: 0;padding: 0;
+}
+.evm{
+    display: block;
+    width: 34px;
+    height: 33px;
+    top: 32px;
+    right: 11px;
+    position: absolute;
+}
+.evm img{
+    width: 100%;
+    height: 100%;
+}
+.envelope{
+    display: block;
+    width: 55px;
+    height: 50px;
+    bottom: 0;
+    right: 4px;
+    position: absolute;
+}
+.envelope img{
+    width: 100%;
+    width: 100%;
+}
