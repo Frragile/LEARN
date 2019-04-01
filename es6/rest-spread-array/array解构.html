@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const lists = [{name:'李雷'}, {age:18},{school:'ecut'},[{major:'software'}]];
+    //我叫李雷我今年18岁
+
+    // es5
+    var nameObj = lists[0];
+    var ageObj = lists[2];
+
+    // es6 数组 解构 一一对应
+    const [name,age] = lists;
+    // 解构特定顺序的值 前面加逗号 解构不存在的值返回 undefined
+    const [,,school] = lists;
+    // 嵌套 解构数组中的数组 const [,,[]] 
+    const [,,,[major]] = lists;
+
+  </script>
+</body>
+</html>
