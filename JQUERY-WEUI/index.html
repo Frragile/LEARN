@@ -44,6 +44,11 @@
         <li>豆瓣电影TOP20</li>
       </ul>
     </div>
+    <!-- 加载更多 -->
+    <div class="weui-loadmore">
+      <i class="weui-loading"></i>
+      <span class="weui-loadmore__tips">正在加载</span>
+    </div>
   </div>
   <script>
     //自执行
@@ -59,19 +64,19 @@
         success: function (response) {
           // console.log(response.subjects)
           for (let n of response.subjects) {
-          //创建li结点，将li结点放入，再将元素放入li结点中
-          $('.lists').append(`<li>${n.title}</li>`)
+            //创建li结点，将li结点放入，再将元素放入li结点中
+            $('.lists').append(`<li>${n.title}</li>`)
           }
         },
         error: function (err) {
           console.log(err)
         }
       })
-      $('.page').pullToRefresh(function(){
+      $('.page').pullToRefresh(function () {
         console.log('下拉刷新')
-        setTimeout(()=>{
+        setTimeout(() => {
           $('.page').pullToRefreshDone();
-        },1500)
+        }, 1500)
         // $.ajax({
         // success: function (response) {
         //   for (let n of response.subjects) {
@@ -79,6 +84,17 @@
         //   }
         // },
         // })
+      })
+      $('.page').infinite().on('infinite', function () {
+        var loading = false
+        if (loading) {
+          return;
+        }
+        $('.weui-loadmore').show();
+        setTimeout(() => {
+          $('.lists').append('<li>这是一条新数据</li>');
+          loading = false;
+        }, 1500)
       })
     })()
   </script>

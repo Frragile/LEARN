@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WebGL 大厂入职</title>
+</head>
+
+<body>
+  <!-- 绘图容器 默认2D  Webgl 提到3D 使用JS的API来画图 -->
+  <canvas id="webglcanvas"></canvas>
+  <!-- 引入一个库来做照相机 -->
+  <script src="https://cdn.bootcss.com/three.js/r83/three.min.js"></script>
+  <script>
+    var canvas,/*放映机*/
+      camera,/*照相机 perspective*/
+      scene,/*场景*/
+      group,/*组合*/
+      renderer;/*导演处总屏幕 渲染器*/
+
+    var mouseX = 0, mouseY = 0;
+    var windowHalfX = window.innerWidth / 2;
+    var windowHalfY = window.innerHeight / 2;
+
+    init();
+    animate();
+    function init() {
+      canvas = document.getElementById('webglcanvas'); /*幕布*/
+      // 世界(场景)是不变的Scene，怎么拍会拍出不一样的3D世界？ 角度 60° 
+      // 怎么拿相机？ 横竖比例 
+      // 近平面距离，远平面距离 
+      // 提供一个透视3D相机(视角,窗口宽高比)
+      camera = new THREE.PerspectiveCamera(60, window.innerWidth / innerHeight, 1, 2000)
+      camera.position.z = 500;
+      // 构建场景
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xffffff);/*3D颜色表达方案*/
+      // 创建分组添加角色
+      group = new THREE.Group();
+      scene.add(group);
+
+      // 形状+材质=真实物体
+      // 地球
+      var loader = new THREE.TextureLoader();/*材质加载器*/
+      loader.load('./land_ocean_ice_cloud_2048.jpg', function (texture) {
+        var geometry = new THREE.SphereGeometry(200, 20, 20);/*球形(半径,圆心))*/
+        var material = new THREE.MeshBasicMaterial({ map: texture })/*材质制作*/
+        var mesh = new THREE.Mesh(geometry, material);
+        group.add(mesh);
+      });
+
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true //抗锯齿
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);//全屏投影
+      document.addEventListener('mousemove', onDocumentMouseMove, false);
+    }
+    function onDocumentMouseMove(event) {
+      mouseX = (event.clientX - windowHalfX);
+      mouseY = (event.clientY - windowHalfY);
+      console.log(mouseX,mouseY);
+    }
+    function animate() {
+      // 请求浏览器每秒拍60张
+      requestAnimationFrame(animate);
+      render();
+    }
+    function render() {
+      camera.position.x += (mouseX - camera.position.x) * 0.05;
+      camera.position.y += (mouseY - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+      group.rotation.y -= 0.005; /*旋转*/
+      renderer.render(scene, camera);/*让照相机跟随场景 去拍*/
+    }
+  </script>
+</body>
+
+</html>
