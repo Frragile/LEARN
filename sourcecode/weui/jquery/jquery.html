@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="root"></div>
+  <!-- <script src="https://cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.min.js"></script> -->
+  <script>
+    // jquery好用，兼容性+快 帮你抹平了浏览器间的差异
+    // 在js里 函数可以作为参数，这个函数也叫做高阶函数
+    function $(selector){
+      //执行DOM Ready事件
+      //执行查找元素
+      if(typeof selector === 'string'){
+
+      }else if(typeof selector === 'function'){
+        document.addEventListener('DOMContentLoaded',selector,false);
+      }
+    }
+    // 这个函数用于运行 有函数就不报错 
+  $(function(){
+    console.log('DOM Ready');
+    $('#root').html('<h1>旅梦有喜!</h1>')
+  })
+  </script>
+</body>
+</html>
