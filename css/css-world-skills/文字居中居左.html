@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .content {
+    border: 1px solid #000;
+    width: 250px;
+    text-align: center;
+  }
+  /* 文字少时居中，文字多时靠左 p容器居中 当字数很多时 容器被撑开 和父元素一样宽 于是全部靠左*/
+  .text {
+    display: inline-block;
+    text-align: left;
+  }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <p class="text">
+      文字很多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多多
+    </p>
+  </div>
+</body>
+</html>

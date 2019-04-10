@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* 宽高继承上一级，html body未定义 则container没有高度 */
+    /* html, body {
+      width: 100%;
+      height: 100%;
+    } */
+
+    /* 不定义html body宽高 
+    加了position:absolute 属性后 就找到父级第一个非static元素(这里是视窗) 
+    用它的宽高来进行计算 */
+  .container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: orange;
+  }
+  </style>
+</head>
+<body>
+  <div class="container"></div>
+</body>
+</html>
