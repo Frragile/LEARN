@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mummy</title>
+  <script src="https://cdn.bootcss.com/phaser/2.6.2/phaser.min.js"></script>
+</head>
+
+<body>
+  <div id="game"></div>
+  <script>
+    // Phaser提供一个游戏对象 new一个对象 给一个游戏实例
+    // 源码句式
+    //  var Phaser = {}; 
+    //  Phaser.Game = function () {}
+    // Game 就是一个对象 有宽度 有高度 游戏引擎 输出到#game容器上 预加载preload
+    // 降低开发难度的API preload create
+    var width = 800, height = 600;
+    var game = new Phaser.Game(width, height, Phaser.AUTO, '#game', { preload: preload, create: create, update: update });
+    //-第一步 preload 预加载资源
+    function preload() {
+      // game全局元素 用load加载图片
+      game.load.image('lazur', './thorn_lazur.png')
+      // 精灵图 宽 高 帧数
+      game.load.spritesheet('mummy', './metalslug_mummy37x45.png', 37, 45, 18);
+    }
+    //-第二步 create 处理好背景，精灵到位，动起来
+    var back, mummy, anim, loopText
+    function create() {
+      back = game.add.image(0, -400, 'lazur');//图片放置的位置 图片名
+      back.scale.set(2);//背景图放大两倍
+      back.smoothed = false;//不抗锯齿 不优化
+      mummy = game.add.sprite(200, 360, 'mummy', 10) //添加精灵 10帧/秒 
+      mummy.scale.set(4);
+      mummy.smoothed = false;
+      anim = mummy.animations.add('walk');//添加walk运动 行走动画
+
+      anim.onStart.add(animationStarted, this);//开始
+      anim.onLoop.add(animationLooped, this);//来回
+      anim.onComplete.add(animationStopped, this);//动作结束
+      anim.play(10, true); // 10帧/s
+    }
+    function animationStarted(sprite, animation) {
+      game.add.text(32, 32, 'AnimationStarted', { fill: 'white' }) //在左上角添加一个文本
+    }
+    function animationLooped(sprite, animation) {
+      if (animation.loopCount === 1) {
+        loopText = game.add.text(32, 64, 'AnimationLooped', { fill: 'white' });
+      } else {
+        animation.loop = false;
+      }
+    }
+    function animationStopped(sprite, animation){
+
+    }
+    //-第三步 更新游戏界面 让动画更加真实
+    function update() {
+      if (anim.isPlaying) {
+        back.x -= .5; //如果精灵还在走动 背景图随之移动
+      }
+    }
+  </script>
+</body>
+
+</html>
