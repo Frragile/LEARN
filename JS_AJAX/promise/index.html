@@ -29,12 +29,13 @@
     var p = new Promise((resolve, reject) => {
       xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 & xhr.status == 200) {
-          console.log(xhr.responseText)
+          // console.log(xhr.responseText)
           // 抛出一个
           resolve(xhr.responseText)
         }
       }
     })
+    // xq()
     function xq() {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -44,22 +45,33 @@
       })
     }
     function marry() {
-      setTimeout(() => {
-        console.log("吴赫要结婚了！")
-      }, 500)
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log("吴赫要结婚了！")
+          resolve('是的')
+        }, 500)
+      })
     }
-    // xq()
+    function child() {
+      console.log('吴赫当爸爸了')
+    }
     // e 指向 xhr.responseText
     // .then 定死了顺序 先执行p再实行xq
-    p.then(xq)
-      .then((e) => {
-        console.log(e)
-        marry()
-      })
-      // catch没有取到信息 报错
-      .catch(() => {
-        console.log("出家");
-      })
+    // p.then(xq)
+    //   .then(marry)
+    //   .then(child)
+    // catch没有取到信息 报错
+    // .catch(() => {
+    //   console.log("出家");
+    // })
+
+    //.all 方法 放在.all里的没有顺序之分
+    // Promise.all([p, xq(), marry()]).then(child)
+
+    //.race 方法 为了提高代码的容错性
+    Promise.race([p, xq(), marry()]).then((value => {
+      console.log(value, '------')
+    }))
   </script>
 </body>
 
