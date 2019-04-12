@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./index.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <div class="item" data-flag="0">
+      <!-- 矢量图  -->
+      <img src="https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg" alt="" class="icon">
+      <span class="count">1988</span>
+    </div>
+    <div class="item" data-flag="0">
+      <!-- 矢量图  -->
+      <img src="https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg" alt="" class="icon">
+      <span class="count">8</span>
+    </div>
+    <div class="item" data-flag="0">
+      <!-- 矢量图  -->
+      <img src="https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg" alt="" class="icon">
+      <span class="count">18</span>
+    </div>
+  </div>
+  <script>
+    const Liked = 'https://b-gold-cdn.xitu.io/v3/static/img/zan-active.930baa2.svg'
+    const Disliked = 'https://b-gold-cdn.xitu.io/v3/static/img/zan.e9d7698.svg'
+    const items = document.querySelectorAll('.item');
+    //默认不点赞
+    let flag = false;
+    for (let i = 0; i < items.length; i++) {
+      items[i].addEventListener('click', function () {
+        const img = items[i].querySelector('img');
+        const count = items[i].querySelector('.count');
+        // count ++ ;  count拿到的是一个节点 没有++操作 let 定义常量 const定义局部变量
+        let countNumber = count.innerHTML;
+        countNumber = parseInt(countNumber);//需要先转换成数值
+        //data-flag
+        let flag =items[i].dataset.flag
+        //点赞
+        if (flag === '0') {
+          countNumber += 1;//字符和数字会连接 不会加1  99->991 ↑
+          img.src = Liked;
+          count.classList.add('active');
+          flag = '1';
+        } else {
+          countNumber -= 1;
+          img.src = Disliked;
+          count.classList.remove('active');
+          flag = '0';
+        }
+        // flag = !flag;
+        items[i].dataset.flag = flag;
+        count.innerHTML = countNumber;
+        // count.classList.add('active');//给count添加一个节点 active
+      })
+    }
+  </script>
+</body>
+
+</html>
