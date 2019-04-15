@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://api.map.baidu.com/api?v=2.0&ak=R8GPNlxS6kTX7p75zAKWP2vTHO7h4NEu"></script>
+  <title>Document</title>
+</head>
+<body>
+  <p>
+    <button onclick="getAddress()">我在哪</button>
+  </p>
+  <div id="out"></div>
+</body>
+<script>
+  var latutude
+  var longitude
+  // 判断浏览器是否支持API
+function getAddress() {
+  var out = document.getElementById('out')
+  if(!navigator.geolocation){//如果你的浏览器不支持geolocation这个API 支持两个回调 成功和失败
+    out.innerHTML = '您的浏览器不支持获取地理位置'
+    return;
+  }
+  // navigator.geolocation 方法的两个回调参数
+  function success(position){
+    latutude = position.coords.latutude
+    longitude = position.coords.longitude
+        var myGeo = new BMap.Geocoder();      
+        // 根据坐标得到地址描述    
+        myGeo.getLocation(new BMap.Point(longitude, latitude), function(result){      
+          if (result){      
+            alert(result.address);
+          }      
+        });
+    out.innerHTML= '<p>你的经度:' + longitude + '<br> 你的纬度:' + latitude +'</p>'
+  }
+  function error() {
+    out.innerHTML='无法获取您的当前位置'
+  }
+
+
+  out.innerHTML = '<p>loading...</p>'
+  navigator.geolocation.getCurrentPosition(success,error )
+}
+</script>
+</html>
