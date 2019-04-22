@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 手动实现es6 reverse 用unshift在头部插入 -->
+  <!-- <script>
+    let arr = [1, 2, 3, 4, 5]
+    function res(num) {
+      let s = num.toString()
+      let a = []
+      for (let i = 0; i < s.length; i++) {
+        a.unshift(s[i]);
+      }
+      return a.join('')
+    }
+    console.log(res(arr))
+    console.log(res('devil'))
+  </script> -->
+
+  <!-- 手动实现 es6 sort从小到大排序(弊端：会修改数组的原始值，返回的是新数组,且只能识别第一位) -->
+  <script>
+    function minNumber(numbers) {
+      return numbers.sort(compare)
+      let res = ''
+      for (let i = 0; i < numbers.length; i++) {
+        res +=numbers[i]
+      }
+      return res
+    }
+    //比较方法
+    function compare(a, b) {
+      //拼接成字符串格式
+      let str1 = a + "" + b
+      let str2 = b + "" + a
+      // console.log(str1.charAt())
+      // charAt() 方法可返回指定位置的字符。
+      for (let i = 0; i < str1.length; i++) {
+        if (str1.charAt(i) > str2.charAt(i)) {
+          return 1
+        }
+        if (str1.charAt(i) < str2.charAt(i)) {
+          return -1
+        }
+      }
+      return 1
+    }
+    console.log(minNumber([3,32,321,53,12 ]))
+    // compare(2, 3)
+  </script>
+</body>
+
+</html>
