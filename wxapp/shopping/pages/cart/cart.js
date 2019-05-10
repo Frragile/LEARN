@@ -7,7 +7,8 @@ Page({
   data: {
     hasList: false,
     carts: [],
-    selectAllStatus: true
+    selectAllStatus: true,
+    totalPrice: ''
   },
 
   /**
@@ -36,6 +37,7 @@ Page({
           { id: 2, title: '素米 500g', image: '/image/s6.png', num: 1, price: 0.03, selected: true }
         ]
       })
+      this.getTotalPrice()
     }, 1000)
   },
 
@@ -50,12 +52,73 @@ Page({
       selectAllStatus: selectAllStatus,
       carts: carts
     })
+    this.getTotalPrice()
+  },
+  //
+  getTotalPrice() {
+    let carts = this.data.carts
+    let total = 0
+    for (let i = 0; i < carts.length; i++) {
+      //if choosen
+      if (carts[i].selected) {
+        total += carts[i].num * carts[i].price
+      }
+    }
+    this.setData({
+      totalPrice: total.toFixed(2)//保留两位小数
+    })
+  },
+  minusCount(e) {
+    // console.log(e)
+    const index = e.target.dataset.index
+    let carts = this.data.carts
+    let num = carts[index].num
+    if (num <= 1) {
+      return
+    }
+    num = num - 1
+    carts[index].num = num
+    //修改数据源
+    this.setData({
+      carts: carts
+    })
+    this.getTotalPrice()
+  },
+  addCount(e) {
+    const index = e.target.dataset.index
+    let carts = this.data.carts
+    let num = carts[index].num
+    // if (num <= 1) {
+    //   return
+    // }
+    num = num + 1
+    carts[index].num = num
+    //修改数据源
+    this.setData({
+      carts: carts
+    })
+    this.getTotalPrice()
+  },
+  deleteList(e){
+    const index = e.target.dataset.index
+    let carts = this.data.carts
+    carts.splice(index,1)
+    this.setData({
+      carts:carts
+    })
+    if(!carts.length){
+      this.setData({
+        hasList:false
+      })
+    }else{
+      this.getTotalPrice()
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
