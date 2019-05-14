@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdn.bootcss.com/lodash.js/4.17.12-pre/lodash.min.js"></script>
+  <script>
+    var user = {
+      info: {
+        avatar: [
+          'https://ss1.baidu.com/70cFfyinKgQFm2e88IuM_a/forum/pic/item/a2cc7cd98d1001e9edceb853b60e7bec55e797f8.jpg',
+          'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3550492122,4111357091&fm=85&app=2&f=JPEG?w=121&h=75&s=B2183EC74B411347645636330300D04E'
+        ]
+      }
+    }
+    const img1 = (user && user.info && user.info.avatar && user.info.avatar[2])||'default image';
+    const img2 = _.get(user,['info','avatar',2],'default image')
+  </script>
+</body>
+
+</html>+++
