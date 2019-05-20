@@ -1,0 +1,7 @@
+//babel 的配置文件 告诉babel 你要如何编译
+{
+  // 预处理 将js按照环境来编 默认将es6编成es5
+  "presets": ["env" ],
+  //预处理搞不定 装插件
+  "plugins": ["transform-object-rest-spread"]
+}
